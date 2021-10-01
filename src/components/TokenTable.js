@@ -86,7 +86,7 @@ export default function TokenTable({ tokens, title }) {
                 <TokenIcon id={row.id} />
                 <Link href={`/tokens/${row.id}`}>
                   <Typography variant="body2" noWrap>
-                    {row.name}
+                    <b>{row.name}</b>
                   </Typography>
                 </Link>
               </Box>

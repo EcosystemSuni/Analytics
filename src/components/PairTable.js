@@ -71,7 +71,7 @@ export default function PairTable({ pairs, title, ...rest }) {
               <Box display="flex" alignItems="center">
                 <PairIcon base={row.token0.id} quote={row.token1.id} />
                 <Link href={`/pairs/${row.id}`} variant="body2" noWrap>
-                  {row.displayName}
+                  <b>{row.displayName}</b>
                 </Link>
               </Box>
             ),
