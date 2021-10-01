@@ -1,32 +1,32 @@
 import gql from "graphql-tag";
 
 export const barQuery = gql`
-  query barQuery($id: String! = "0x8798249c2e607446efb7ad49ec89dd1865ff4272") {
+  query barQuery($id: String! = "0x065c13f1999827824dcc255049e815d8eb75769a") {
     bar(id: $id) {
       id
       totalSupply
       ratio
-      xSushiMinted
-      xSushiBurned
-      sushiStaked
-      sushiStakedUSD
-      sushiHarvested
-      sushiHarvestedUSD
-      xSushiAge
-      xSushiAgeDestroyed
+      xSuniMinted
+      xSuniBurned
+      suexStaked
+      suexStakedUSD
+      suexHarvested
+      suexHarvestedUSD
+      xSuniAge
+      xSuniAgeDestroyed
       # histories(first: 1000) {
       #   id
       #   date
       #   timeframe
-      #   sushiStaked
-      #   sushiStakedUSD
-      #   sushiHarvested
-      #   sushiHarvestedUSD
-      #   xSushiAge
-      #   xSushiAgeDestroyed
-      #   xSushiMinted
-      #   xSushiBurned
-      #   xSushiSupply
+      #   suexStaked
+      #   suexStakedUSD
+      #   suexHarvested
+      #   suexHarvestedUSD
+      #   xSuniAge
+      #   xSuniAgeDestroyed
+      #   xSuniMinted
+      #   xSuniBurned
+      #   xSuniSupply
       #   ratio
       # }
     }
@@ -39,15 +39,15 @@ export const barHistoriesQuery = gql`
       id
       date
       timeframe
-      sushiStaked
-      sushiStakedUSD
-      sushiHarvested
-      sushiHarvestedUSD
-      xSushiAge
-      xSushiAgeDestroyed
-      xSushiMinted
-      xSushiBurned
-      xSushiSupply
+      suexStaked
+      suexStakedUSD
+      suexHarvested
+      suexHarvestedUSD
+      xSuniAge
+      xSuniAgeDestroyed
+      xSuniMinted
+      xSuniBurned
+      xSuniSupply
       ratio
     }
   }
@@ -59,20 +59,20 @@ export const barUserQuery = gql`
       id
       bar {
         totalSupply
-        sushiStaked
+        suexStaked
       }
-      xSushi
-      sushiStaked
-      sushiStakedUSD
-      sushiHarvested
-      sushiHarvestedUSD
-      xSushiIn
-      xSushiOut
-      xSushiOffset
-      xSushiMinted
-      xSushiBurned
-      sushiIn
-      sushiOut
+      xSuni
+      suexStaked
+      suexStakedUSD
+      suexHarvested
+      suexHarvestedUSD
+      xSuniIn
+      xSuniOut
+      xSuniOffset
+      xSuniMinted
+      xSuniBurned
+      suexIn
+      suexOut
       usdIn
       usdOut
       createdAt

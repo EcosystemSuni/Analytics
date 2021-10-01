@@ -1,7 +1,14 @@
 import { bisector } from "d3-array";
 
 // accessors
-export const getX = (data) => new Date(data.date);
+export const getX = (data) => {
+  if(data){
+    return new Date(data.date)
+  }
+}
+
+
+
 export const getY = (data) => data.value;
 
 // bisector

@@ -56,7 +56,9 @@ export default function PairTable({ pairs, title, ...rest }) {
     });
 
   return (
+
     <div className={classes.root}>
+      
       <SortableTable
         orderBy="reserveUSD"
         title={title}

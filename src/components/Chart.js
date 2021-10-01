@@ -213,6 +213,7 @@ export function Chart({
     // Set `ref={containerRef}` on the element corresponding to the coordinate system that
     // `left/top` (passed to `TooltipInPortal`) are relative to.
     <div>
+      
       <svg ref={containerRef} width={width} height={height}>
         {/* <rect x={0} y={0} width={width} height={height} fill="transparent" /> */}
         {title && (

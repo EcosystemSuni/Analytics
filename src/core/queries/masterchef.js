@@ -54,7 +54,7 @@ export const poolHistoryQuery = gql`
       id
       pool {
         id
-        accSushiPerShare
+        accSuexPerShare
       }
       slpBalance
       slpAge
@@ -78,12 +78,12 @@ export const poolQuery = gql`
       pair
       allocPoint
       lastRewardBlock
-      accSushiPerShare
+      accSuexPerShare
       balance
       userCount
       owner {
         id
-        sushiPerBlock
+        suwpPerBlock
         totalAllocPoint
       }
       users(orderBy: amount, orderDirection: desc) {
@@ -136,12 +136,12 @@ export const poolsQuery = gql`
       pair
       allocPoint
       lastRewardBlock
-      accSushiPerShare
+      accSuexPerShare
       balance
       userCount
       owner {
         id
-        sushiPerBlock
+        suwpPerBlock
         totalAllocPoint
       }
       # users {

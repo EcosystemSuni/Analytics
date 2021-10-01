@@ -88,7 +88,6 @@ function IndexPage() {
       <Box mb={3}>
         <Search pairs={pairs} tokens={tokens} />
       </Box>
-
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={6}>
           <Paper variant="outlined" style={{ height: 300 }}>
@@ -112,6 +111,7 @@ function IndexPage() {
             variant="outlined"
             style={{ height: 300, position: "relative" }}
           >
+            
             <ParentSize>
               {({ width, height }) => (
                 <BarChart
@@ -130,7 +130,7 @@ function IndexPage() {
 
         <Grid item xs={12}>
           <PoolTable
-            title="Sushi Reward Pools"
+            title="Suni Reward Pools"
             pools={pools}
             orderBy="tvl"
             order="desc"
@@ -139,7 +139,7 @@ function IndexPage() {
         </Grid>
 
         <Grid item xs={12}>
-          <PairTable title="Top Sushi Liquidity Pairs" pairs={pairs} />
+          <PairTable title="Top Suni Liquidity Pairs" pairs={pairs} />
         </Grid>
 
         <Grid item xs={12}>

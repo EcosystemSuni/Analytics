@@ -65,7 +65,7 @@ function BarPage() {
     data: { token },
   } = useQuery(tokenQuery, {
     variables: {
-      id: "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+      id: "0x3a49360098cf9061630211874398ec75704c0595",
     },
   });
 
@@ -77,7 +77,7 @@ function BarPage() {
     data: { dayDatas },
   } = useQuery(dayDatasQuery);
 
-  const sushiPrice =
+  const suexPrice =
     parseFloat(token?.derivedETH) * parseFloat(bundles[0].ethPrice);
 
   useInterval(async () => {
@@ -92,11 +92,11 @@ function BarPage() {
   }, 60000);
 
   const {
-    sushiStakedUSD,
-    sushiHarvestedUSD,
-    xSushiMinted,
-    xSushiBurned,
-    xSushi,
+    suexStakedUSD,
+    suexHarvestedUSD,
+    xSuniMinted,
+    xSuniBurned,
+    xSuni,
     apr,
     apy,
     fees,
@@ -104,31 +104,34 @@ function BarPage() {
     (previousValue, currentValue) => {
       const date = currentValue.date * 1000;
       const dayData = dayDatas.find((d) => d.date === currentValue.date);
-      previousValue["sushiStakedUSD"].push({
+      
+      //console.log('datassss', dayData)
+      
+      previousValue["suexHarvestedUSD"].push({
         date,
-        value: parseFloat(currentValue.sushiStakedUSD),
+        value: parseFloat(currentValue.suexStakedUSD),
       });
-      previousValue["sushiHarvestedUSD"].push({
+      previousValue["suexHarvestedUSD"].push({
         date,
-        value: parseFloat(currentValue.sushiHarvestedUSD),
+        value: parseFloat(currentValue.suexHarvestedUSD),
       });
 
-      previousValue["xSushiMinted"].push({
+      previousValue["xSuniMinted"].push({
         date,
-        value: parseFloat(currentValue.xSushiMinted),
+        value: parseFloat(currentValue.xSuniMinted),
       });
-      previousValue["xSushiBurned"].push({
+      previousValue["xSuniBurned"].push({
         date,
-        value: parseFloat(currentValue.xSushiBurned),
+        value: parseFloat(currentValue.xSuniBurned),
       });
-      previousValue["xSushi"].push({
+      
+      previousValue["xSuni"].push({
         date,
-        value: parseFloat(currentValue.xSushiSupply),
+        value: parseFloat(currentValue.xSuniSupply),
       });
-      const apr =
-        (((dayData.volumeUSD * 0.05 * 0.01) / currentValue.xSushiSupply) *
-          365) /
-        (currentValue.ratio * sushiPrice);
+
+      const apr = (dayData) ? (((dayData.volumeUSD * 0.05 * 0.01) / currentValue.xSuniSupply) * 365) / (currentValue.ratio * suexPrice) : null;
+
       previousValue["apr"].push({
         date,
         value: parseFloat(apr * 100),
@@ -139,16 +142,16 @@ function BarPage() {
       });
       previousValue["fees"].push({
         date,
-        value: parseFloat(dayData.volumeUSD * 0.005),
+        value: parseFloat((dayData) ? dayData.volumeUSD : 0 * 0.005),
       });
       return previousValue;
     },
     {
-      sushiStakedUSD: [],
-      sushiHarvestedUSD: [],
-      xSushiMinted: [],
-      xSushiBurned: [],
-      xSushi: [],
+      suexStakedUSD: [],
+      suexHarvestedUSD: [],
+      xSuniMinted: [],
+      xSuniBurned: [],
+      xSuni: [],
       apr: [],
       apy: [],
       fees: [],
@@ -162,16 +165,14 @@ function BarPage() {
 
   const oneDayVolume = factory.volumeUSD - factory.oneDay.volumeUSD;
 
-  const APR =
-    (((oneDayVolume * 0.05 * 0.01) / bar.totalSupply) * 365) /
-    (bar.ratio * sushiPrice);
+  const APR = (((oneDayVolume * 0.05 * 0.01) / bar.totalSupply) * 365) / (bar.ratio * suexPrice);
 
   const APY = Math.pow(1 + APR / 365, 365) - 1;
 
   return (
     <AppShell>
       <Head>
-        <title>Sushi Bar | SUNI Analytics</title>
+        <title>Suex Bar | SUNI Analytics</title>
       </Head>
 
       <Grid container spacing={3}>
@@ -179,8 +180,8 @@ function BarPage() {
           <Grid container spacing={3}>
             {/* <Grid item xs>
               <KPI
-                title="xSushi Age"
-                value={parseFloat(bar.xSushiAge).toLocaleString()}
+                title="xSuni Age"
+                value={parseFloat(bar.xSuniAge).toLocaleString()}
               />
             </Grid> */}
             <Grid item xs={12} sm={6} md={3}>
@@ -190,7 +191,7 @@ function BarPage() {
               <KPI title="APY (Avg)" value={averageApy} format="percent" />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <KPI title="xSushi" value={bar.totalSupply} format="integer" />
+              <KPI title="xSuni" value={bar.totalSupply} format="integer" />
             </Grid>
             {/* <Grid item xs={12} sm={6} md={3}>
               <KPI
@@ -199,7 +200,7 @@ function BarPage() {
               />
             </Grid> */}
             <Grid item xs={12} sm={6} md={3}>
-              <KPI title="xSushi:Sushi" value={Number(bar.ratio).toFixed(4)} />
+              <KPI title="xSuni:Suex" value={Number(bar.ratio).toFixed(4)} />
             </Grid>
           </Grid>
         </Grid>
@@ -210,13 +211,13 @@ function BarPage() {
             style={{ height: 300, position: "relative" }}
           >
             <Lines
-              title="xSushi Age & xSushi Age Destroyed"
+              title="xSuni Age & xSuni Age Destroyed"
               margin={{ top: 64, right: 32, bottom: 32, left: 64 }}
               strokes={[
                 theme.palette.positive.light,
                 theme.palette.negative.light,
               ]}
-              lines={[xSushiAge, xSushiAgeDestroyed]}
+              lines={[xSuniAge, xSuniAgeDestroyed]}
             />
           </Paper>
         </Grid> */}
@@ -269,9 +270,9 @@ function BarPage() {
                 <Curves
                   width={width}
                   height={height}
-                  title="xSushi:Sushi & Sushi:xSushi"
+                  title="xSuni:Sushi & Sushi:xSuni"
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
-                  data={[xSushiSushi, xSushiPerSushi]}
+                  data={[xSuniSushi, xSuniPerSushi]}
                 />
               )}
             </ParentSize>
@@ -288,9 +289,9 @@ function BarPage() {
                 <Curves
                   width={width}
                   height={height}
-                  data={[sushiStakedUSD, sushiHarvestedUSD]}
+                  data={[suexStakedUSD, suexHarvestedUSD]}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
-                  labels={["Sushi Staked (USD)", "Sushi Harvested (USD)"]}
+                  labels={["Suex Staked (USD)", "Suex Harvested (USD)"]}
                 />
               )}
             </ParentSize>
@@ -308,8 +309,8 @@ function BarPage() {
                   width={width}
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
-                  data={[xSushiMinted, xSushiBurned]}
-                  labels={["xSushi Minted", "xSushi Burned"]}
+                  data={[xSuniMinted, xSuniBurned]}
+                  labels={["xSuni Minted", "xSuni Burned"]}
                 />
               )}
             </ParentSize>
@@ -326,17 +327,17 @@ function BarPage() {
                 <Curves
                   width={width}
                   height={height}
-                  title="xSushi Total Supply"
+                  title="xSuni Total Supply"
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
-                  data={[xSushi]}
+                  data={[xSuni]}
                 />
               )}
             </ParentSize>
           </Paper>
 
           {/* <Chart
-            title="xSushi Total Supply"
-            data={xSushi}
+            title="xSuni Total Supply"
+            data={xSuni}
             height={400}
             margin={{ top: 56, right: 24, bottom: 0, left: 56 }}
             tooptip

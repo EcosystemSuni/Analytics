@@ -155,7 +155,7 @@ export async function getPools(client = getApollo()) {
   const ethPrice = bundles[0].ethPrice;
 
   const { token } = await getToken(
-    "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2"
+    "0x3a49360098cf9061630211874398ec75704c0595"
   );
 
   const sushiPrice = ethPrice * token.derivedETH;
@@ -165,7 +165,7 @@ export async function getPools(client = getApollo()) {
     data: { liquidityPositions },
   } = await client.query({
     query: liquidityPositionSubsetQuery,
-    variables: { user: "0xc2edad668740f1aa35e4d8f227fb8e17dca888cd" },
+    variables: { user: "0x557691633cff6ad68393b33051cb25b3194d336b" },
   });
 
   await client.cache.writeQuery({
@@ -176,7 +176,7 @@ export async function getPools(client = getApollo()) {
           (pool) =>
             !POOL_DENY.includes(pool.id) &&
             pool.allocPoint !== "0" &&
-            pool.accSushiPerShare !== "0" &&
+            pool.accSuexPerShare !== "0" &&
             pairs.find((pair) => pair?.id === pool.pair)
         )
         .map((pool) => {

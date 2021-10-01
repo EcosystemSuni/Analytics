@@ -5,10 +5,10 @@ export const TOKEN_DENY = [
   "0xfc989fbb6b3024de5ca0144dc23c18a063942ac1",
 ];
 
-export const PAIR_DENY = ["0xb6a741f37d6e455ebcc9f17e2c16d0586c3f57a5"];
+export const PAIR_DENY = ["0x6a0dee7576773136064a27eeca2e0a542bd64c77", "0x0903e250ebc67853c6d824806d474ff72bb2dce0"];
 
 export const EXCHANGE_CREATED_TIMESTAMP = 1599214239;
 
-export const POOL_DENY = ["14", "29", "45", "30"];
+export const POOL_DENY = ["0", "1"];
 
-export const SUSHI_TOKEN = "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2";
+export const SUSHI_TOKEN = "0x3a49360098cf9061630211874398ec75704c0595";

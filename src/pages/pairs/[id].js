@@ -188,7 +188,7 @@ function PairPage(props) {
     <AppShell>
       <Head>
         <title>
-          {pair.token0.symbol}-{pair.token1.symbol} | SushiSwap Analytics
+          {pair.token0.symbol}-{pair.token1.symbol} | Suni Analytics
         </title>
       </Head>
       <PageHeader>

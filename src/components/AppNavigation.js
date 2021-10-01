@@ -284,7 +284,7 @@ export default function AppNavigation() {
           </ListItemIcon>
           <ListItemText primary="Tokens" />
         </ListItem>
-        <ListItem
+        {/*<ListItem
           button
           key="/portfolio"
           selected={router.pathname.includes("/portfolio")}
@@ -301,7 +301,7 @@ export default function AppNavigation() {
             <AccountTreeOutlined />
           </ListItemIcon>
           <ListItemText primary="Portfolio" />
-        </ListItem>
+        </ListItem>*/}
       </List>
       <Dialog
         maxWidth="sm"
