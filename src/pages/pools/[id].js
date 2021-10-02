@@ -206,7 +206,7 @@ function PoolPage() {
               target="_blank"
               variant="body1"
             >
-              Stake seg
+              Stake Seg
             </Link>
           </Grid>
         </Grid>
@@ -226,7 +226,7 @@ function PoolPage() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
           <KPI
-            title="~ seg Age"
+            title="~ Seg Age"
             value={`${(
               parseFloat(pool.segAge) / parseFloat(pool.balance / 1e18)
             ).toFixed(2)} Days`}
@@ -238,7 +238,7 @@ function PoolPage() {
         <Grid item xs={12} sm={4}>
           <KPI
             title="Staked"
-            value={`${(pool.balance / 1e18).toFixed(4)} seg`}
+            value={`${(pool.balance / 1e18).toFixed(4)} Seg`}
           />
         </Grid>
         {/* <Grid item xs={12} sm={4}>
@@ -291,7 +291,7 @@ function PoolPage() {
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
                   data={[segAge, segAgeRemoved]}
-                  labels={["seg Age", "seg Age Removed"]}
+                  labels={["Seg Age", "Seg Age Removed"]}
                 />
               )}
             </ParentSize>
@@ -334,7 +334,7 @@ function PoolPage() {
             <ParentSize>
               {({ width, height }) => (
                 <Curves
-                  title="~ seg Age (Days)"
+                  title="~ Seg Age (Days)"
                   width={width}
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
@@ -382,7 +382,7 @@ function PoolPage() {
             <ParentSize>
               {({ width, height }) => (
                 <Curves
-                  title="seg Balance"
+                  title="Seg Balance"
                   width={width}
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
