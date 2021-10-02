@@ -99,7 +99,7 @@ function UserPage() {
     data: { token },
   } = useQuery(tokenQuery, {
     variables: {
-      id: "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+      id: "0x3a49360098cf9061630211874398ec75704c0595",
     },
   });
 
@@ -131,39 +131,39 @@ function UserPage() {
     parseFloat(token?.derivedETH) * parseFloat(bundles[0].ethPrice);
 
   // BAR
-  const xSushi = parseFloat(barData?.user?.xSushi);
+  const xSuni = parseFloat(barData?.user?.xSuni);
 
   const barPending =
-    (xSushi * parseFloat(barData?.user?.bar?.sushiStaked)) /
+    (xSuni * parseFloat(barData?.user?.bar?.suexStaked)) /
     parseFloat(barData?.user?.bar?.totalSupply);
 
-  const xSushiTransfered =
-    barData?.user?.xSushiIn > barData?.user?.xSushiOut
-      ? parseFloat(barData?.user?.xSushiIn) -
-        parseFloat(barData?.user?.xSushiOut)
-      : parseFloat(barData?.user?.xSushiOut) -
-        parseFloat(barData?.user?.xSushiIn);
+  const xSuniTransfered =
+    barData?.user?.xSuniIn > barData?.user?.xSuniOut
+      ? parseFloat(barData?.user?.xSuniIn) -
+        parseFloat(barData?.user?.xSuniOut)
+      : parseFloat(barData?.user?.xSuniOut) -
+        parseFloat(barData?.user?.xSuniIn);
 
-  const barStaked = barData?.user?.sushiStaked;
+  const barStaked = barData?.user?.suexStaked;
 
-  const barStakedUSD = barData?.user?.sushiStakedUSD;
+  const barStakedUSD = barData?.user?.suexStakedUSD;
 
-  const barHarvested = barData?.user?.sushiHarvested;
-  const barHarvestedUSD = barData?.user?.sushiHarvestedUSD;
+  const barHarvested = barData?.user?.suexHarvested;
+  const barHarvestedUSD = barData?.user?.suexHarvestedUSD;
 
   const barPendingUSD = barPending > 0 ? barPending * sushiPrice : 0;
 
   const barRoiSushi =
     barPending -
-    (parseFloat(barData?.user?.sushiStaked) -
-      parseFloat(barData?.user?.sushiHarvested) +
-      parseFloat(barData?.user?.sushiIn) -
-      parseFloat(barData?.user?.sushiOut));
+    (parseFloat(barData?.user?.suexStaked) -
+      parseFloat(barData?.user?.suexHarvested) +
+      parseFloat(barData?.user?.suexIn) -
+      parseFloat(barData?.user?.suexOut));
 
   const barRoiUSD =
     barPendingUSD -
-    (parseFloat(barData?.user?.sushiStakedUSD) -
-      parseFloat(barData?.user?.sushiHarvestedUSD) +
+    (parseFloat(barData?.user?.suexStakedUSD) -
+      parseFloat(barData?.user?.suexHarvestedUSD) +
       parseFloat(barData?.user?.usdIn) -
       parseFloat(barData?.user?.usdOut));
 
@@ -194,7 +194,7 @@ function UserPage() {
     poolUsers?.reduce((previousValue, currentValue) => {
       return (
         previousValue +
-        ((currentValue.amount * currentValue.pool.accSushiPerShare) / 1e12 -
+        ((currentValue.amount * currentValue.pool.accSuniPerShare) / 1e12 -
           currentValue.rewardDebt) /
           1e18
       );
@@ -210,7 +210,7 @@ function UserPage() {
       return [
         entries + parseFloat(currentValue.entryUSD),
         exits + parseFloat(currentValue.exitUSD),
-        harvested + parseFloat(currentValue.sushiHarvestedUSD),
+        harvested + parseFloat(currentValue.suexHarvestedUSD),
       ];
     },
     [0, 0, 0]
@@ -219,7 +219,7 @@ function UserPage() {
   // Global
 
   // const originalInvestments =
-  //   parseFloat(barData?.user?.sushiStakedUSD) + parseFloat(poolEntriesUSD);
+  //   parseFloat(barData?.user?.suexStakedUSD) + parseFloat(poolEntriesUSD);
 
   const investments =
     poolEntriesUSD + barPendingUSD + poolsPendingUSD + poolExitsUSD;
@@ -265,8 +265,8 @@ function UserPage() {
 
               <Grid item xs={12} sm={6} md={3}>
                 <KPI
-                  title="xSUSHI"
-                  value={Number(xSushi.toFixed(2)).toLocaleString()}
+                  title="xSuni"
+                  value={Number(xSuni.toFixed(2)).toLocaleString()}
                 />
               </Grid>
 
@@ -325,7 +325,7 @@ function UserPage() {
                           SUSHI
                         </Link>
                         {/* <Link href={`/tokens/0x8798249c2e607446efb7ad49ec89dd1865ff4272`} variant="body2" noWrap>
-                        xSUSHI
+                        xSuni
                       </Link> */}
                       </Box>
                     </TableCell>
@@ -441,7 +441,7 @@ function UserPage() {
                     <TableCell key="pendingSushi" align="right">
                       Sushi Pending
                     </TableCell>
-                    <TableCell key="sushiHarvested" align="right">
+                    <TableCell key="suexHarvested" align="right">
                       Sushi Harvested
                     </TableCell>
                     <TableCell key="pl" align="right">
@@ -465,10 +465,10 @@ function UserPage() {
                     const token1 = pair.reserve1 * share;
 
                     const pendingSushi =
-                      ((user.amount * user.pool.accSushiPerShare) / 1e12 -
+                      ((user.amount * user.pool.accSuniPerShare) / 1e12 -
                         user.rewardDebt) /
                       1e18;
-                    // user.amount.mul(accSushiPerShare).div(1e12).sub(user.rewardDebt);
+                    // user.amount.mul(accSuniPerShare).div(1e12).sub(user.rewardDebt);
 
                     // console.log(
                     //   user,
@@ -533,8 +533,8 @@ function UserPage() {
                         </TableCell>
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
-                            {decimalFormatter.format(user.sushiHarvested)} (
-                            {currencyFormatter.format(user.sushiHarvestedUSD)})
+                            {decimalFormatter.format(user.suexHarvested)} (
+                            {currencyFormatter.format(user.suexHarvestedUSD)})
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
@@ -542,7 +542,7 @@ function UserPage() {
                             {currencyFormatter.format(
                               parseFloat(pair.reserveUSD * share) +
                                 parseFloat(user.exitUSD) +
-                                parseFloat(user.sushiHarvestedUSD) +
+                                parseFloat(user.suexHarvestedUSD) +
                                 parseFloat(pendingSushi * sushiPrice) -
                                 parseFloat(user.entryUSD)
                             )}
