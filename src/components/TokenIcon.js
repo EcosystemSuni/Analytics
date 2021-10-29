@@ -6,7 +6,7 @@ import { useMemo } from "react";
 
 const isAddress = (value) => {
   try {
-      return toChecksumAddress(value).toLowerCase()
+      return toChecksumAddress(value)
   } catch {
       return false
   }
